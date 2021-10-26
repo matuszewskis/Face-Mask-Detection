@@ -2,9 +2,12 @@ import tensorflow as tf
 from tensorflow.keras import layers
 from keras.models import Model, load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.optimizers import RMSprop
 import os
 
 #model one
+# link to source: https://github.com/chandrikadeb7/Face-Mask-Detection
+
 trained_model = tf.keras.applications.InceptionV3(input_shape = (224, 224, 3),include_top=False, weights='imagenet')
 
 for layer in trained_model.layers:
@@ -14,7 +17,6 @@ last_layer = trained_model.get_layer('mixed7')
 print('last layer output shape: ', last_layer.output_shape)
 last_output = last_layer.output
 
-from tensorflow.keras.optimizers import RMSprop
 
 x = layers.Flatten()(last_output)
 x = layers.Dense(512, activation='relu')(x)
@@ -27,9 +29,6 @@ model.compile(optimizer = RMSprop(lr=0.0001),
               loss='binary_crossentropy',
               metrics=['accuracy'])
 
-
-
-import os
 
 path = os.getcwd()
 path = os.path.join(path, 'dataset')
