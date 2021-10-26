@@ -1,20 +1,9 @@
-import tensorflow as tf
-from tensorflow.keras import layers
-from tensorflow.keras import Model
-from tensorflow.keras.applications.inception_v3 import InceptionV3
-from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
-from keras.layers import Conv2D, Input, ZeroPadding2D, BatchNormalization, Activation, MaxPooling2D, Flatten, Dense, \
-    Dropout
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 
-from keras.models import Model, load_model
-from keras.callbacks import TensorBoard, ModelCheckpoint
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score
-from sklearn.utils import shuffle
-import numpy as np
+#linkg: https://data-flair.training/blogs/face-mask-detection-with-python/
 
 # model 2
 model = Sequential([
@@ -32,6 +21,7 @@ model = Sequential([
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 
 
+
 path = os.getcwd()
 path = os.path.join(path, 'dataset')
 
@@ -40,7 +30,6 @@ path_train = os.path.join(path, 'Train')
 
 # declare test_path
 path_test = os.path.join(path, 'Test')
-
 train_datagen = ImageDataGenerator(rescale=1.0 / 255,
                                    rotation_range=40,
                                    width_shift_range=0.2,
