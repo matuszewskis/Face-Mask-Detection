@@ -5,6 +5,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.optimizers import RMSprop
 import os
 
+
 #model one
 # link to source: https://github.com/chandrikadeb7/Face-Mask-Detection
 
