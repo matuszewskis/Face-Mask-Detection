@@ -5,7 +5,7 @@ import os
 
 #linkg: https://data-flair.training/blogs/face-mask-detection-with-python/
 
-# model 2
+# model 2 moj komentarz
 model = Sequential([
     Conv2D(100, (3, 3), activation='relu', input_shape=(150, 150, 3)),
     MaxPooling2D(2, 2),
