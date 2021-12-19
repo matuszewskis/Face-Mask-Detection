@@ -8,7 +8,7 @@ import os
 #model one
 # link to source: https://github.com/chandrikadeb7/Face-Mask-Detection
 
-trained_model = tf.keras.applications.InceptionV3(input_shape = (224, 224, 3),include_top=False, weights='imagenet')
+trained_model = tf.keras.applications.InceptionV3(input_shape = (224, 224, 3), include_top=False, weights='imagenet')
 
 for layer in trained_model.layers:
   layer.trainable = False
@@ -72,5 +72,5 @@ model.fit(train_generator,
 model.predict(next(train_generator)[0])
 
 
-
+model.save("imagenet.h5")
 
