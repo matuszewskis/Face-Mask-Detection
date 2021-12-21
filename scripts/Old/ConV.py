@@ -3,9 +3,9 @@ from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 
-#linkg: https://data-flair.training/blogs/face-mask-detection-with-python/
+# linkg: https://data-flair.training/blogs/face-mask-detection-with-python/
 
-# model 2 moj komentarz
+# model 2
 model = Sequential([
     Conv2D(100, (3, 3), activation='relu', input_shape=(150, 150, 3)),
     MaxPooling2D(2, 2),
@@ -56,5 +56,5 @@ history = model.fit_generator(train_generator,
 img = next(train_generator)[0][0].reshape(1, 150, 150, 3)
 model.predict(img)
 model.predict(next(train_generator)[0])
-
 model.predict(next(train_generator)[0])
+
