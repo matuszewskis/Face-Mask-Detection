@@ -1,11 +1,12 @@
+import os
 import cv2
 import keras
 # define a video capture object
 import numpy as np
 import matplotlib.pyplot as plt
 
-imagenet = keras.models.load_model("scripts/imagenet.h5")
-
+path = os.getcwd() + "/scripts/imagenet.h5"
+imagenet = keras.models.load_model("scripts/MK/imagenet.h5")
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 vid = cv2.VideoCapture(0)
 
@@ -20,6 +21,7 @@ while True:
     if not ret:
         break
     else:
+        #iterater trough faces
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         for (x, y, w, h) in faces:
             face_img = im[y:y + h, x:x + w]
@@ -30,8 +32,13 @@ while True:
             result = imagenet.predict(reshaped)
             print(result)
 
-            cv2.rectangle(im, (x, y), (x+w, y+h), (255, 0, 0), 2)
-            cv2.putText(im, "TEXT", (x, y-10),cv2.FONT_HERSHEY_SIMPLEX,0.8,(255,255,255),2)
+            if result[0][0] > 0.5:
+                cv2.putText(im, "No mask!", (x, y-10),cv2.FONT_HERSHEY_SIMPLEX,0.8,(0,0,255),2)
+                cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            if result[0][0] <= 0.5:
+                cv2.putText(im, "Mask" + str(), (x, y-10),cv2.FONT_HERSHEY_SIMPLEX,0.8,(0,128,0),2)
+                cv2.rectangle(im, (x, y), (x + w, y + h), (0, 128, 0), 2)
+
 
     cv2.imshow('frame', im)
     #print(result)
