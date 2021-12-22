@@ -19,10 +19,10 @@ datagen = ImageDataGenerator(rescale=1.0 / 255)
 
 validation_generator = datagen.flow_from_directory(path_test,
                                                    batch_size=1,
-                                                   target_size=(200, 200))
+                                                   target_size=(150, 100))
 
 
-img = next(validation_generator)[0].reshape(200, 200, 3)
+img = next(validation_generator)[0].reshape(150, 100, 3)
 plt.imshow(img)
 
 explainer = lime_image.LimeImageExplainer()
@@ -38,7 +38,7 @@ temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], positive_
 plt.imshow(mark_boundaries(temp, mask))
 
 # A co w sumie zaznaczył?
-print(model.predict(img.reshape(1,200,200,3)))
+print(model.predict(img.reshape(1,150, 100,3)))
 
 # 10 obszarów o największym wpływie na to czy uzna, że ma maskę (zielone) czy nie (czerwone)
 temp, mask = explanation.get_image_and_mask(label=0, positive_only=False, num_features=10, hide_rest=False)
