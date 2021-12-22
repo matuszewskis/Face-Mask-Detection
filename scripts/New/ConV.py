@@ -22,16 +22,16 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
 
 
 
-path = os.getcwd()
-path = os.path.join(path, 'dataset')
+path=os.getcwd()
+path=os.path.join(path, 'dataset')
 
 # declare train_path
 path_train = os.path.join(path, 'Train')
 
 # declare test_path
 path_test = os.path.join(path, 'Test')
-train_datagen = ImageDataGenerator(rescale=1.0 / 255
-                                   )
+train_datagen = ImageDataGenerator(rescale=1.0 / 255)
+
 train_generator = train_datagen.flow_from_directory(path_train,
                                                     batch_size=10,
                                                     target_size=(150, 100))

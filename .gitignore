@@ -9,6 +9,9 @@ __pycache__/
 # models
 *.h5
 
+# idea ignore
+.idea
+
 # Distribution / packaging
 .Python
 build/

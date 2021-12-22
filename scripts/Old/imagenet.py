@@ -6,7 +6,7 @@ from tensorflow.keras.optimizers import RMSprop
 import os
 
 
-#model one
+# model 1
 # link to source: https://github.com/chandrikadeb7/Face-Mask-Detection
 
 trained_model = tf.keras.applications.InceptionV3(input_shape = (224, 224, 3),include_top=False, weights='imagenet')

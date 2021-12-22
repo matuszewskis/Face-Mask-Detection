@@ -1,9 +1,7 @@
 import os
 import cv2
 import keras
-# define a video capture object
 import numpy as np
-import matplotlib.pyplot as plt
 
 path = os.getcwd() + "/scripts/imagenet.h5"
 imagenet = keras.models.load_model("scripts/MK/imagenet.h5")
