@@ -38,15 +38,15 @@ explanation = explainer.explain_instance(img.astype('double'),
 temp, mask = explanation.get_image_and_mask(explanation.top_labels[0], positive_only=True, num_features=5, hide_rest=True)
 plt.imshow(mark_boundaries(temp, mask))
 
-# A co w sumie zaznaczył?
+# A co w sumie zaznaczył? (na ile % nie ma maseczki)
 print(model.predict(img.reshape(1,224,224,3)))
 
-# 10 obszarów o największym wpływie na to czy uzna, że ma maskę (zielone) czy nie (czerwone)
+# 10 obszarów o największym wpływie na to czy uzna, że ma maskę (czerwony) czy nie (without)
 temp, mask = explanation.get_image_and_mask(label=0, positive_only=False, num_features=10, hide_rest=False)
 plt.imshow(mark_boundaries(temp / 2 + 0.5, mask))
 
 # obszary o wpływie co najmniej 0.1
-temp, mask = explanation.get_image_and_mask(label=0, positive_only=False, num_features=10, hide_rest=False, min_weight=0.1)
+temp, mask = explanation.get_image_and_mask(label=0, positive_only=False, num_features=10, hide_rest=False, min_weight=0.2)
 plt.imshow(mark_boundaries(temp / 2 + 0.5, mask))
 
 
